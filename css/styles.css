@@ -1,0 +1,29 @@
+/* Garantir que o conteúdo ocupe o espaço disponível e o rodapé sempre apareça no fundo */
+html, body {
+    height: 100%; /* O corpo ocupa a altura total da janela */
+    margin: 0; /* Remove margens padrões */
+    overflow: hidden; /* Impede a exibição da barra de rolagem */
+    background-color: black;
+}
+
+/* Container principal usando flexbox para manter o rodapé no fundo */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.content {
+    flex: 1; /* Ocupa o espaço restante disponível */
+    padding-bottom: 50px; /* Adiciona espaço para o rodapé */
+    overflow-y: auto; /* Rolagem interna apenas se necessário */
+}
+
+footer {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    position: relative;
+}

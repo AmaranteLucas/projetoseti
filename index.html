@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pesquisa de Ticket</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    /* Garantir que o conteúdo ocupe o espaço disponível e o rodapé sempre apareça no fundo */
-    html, body {
-        height: 100%; /* O corpo ocupa a altura total da janela */
-        margin: 0; /* Remove margens padrões */
-        overflow: hidden; /* Impede a exibição da barra de rolagem */
-    }
-
-    /* Container principal usando flexbox para manter o rodapé no fundo */
-    .main-container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .content {
-        flex: 1; /* Ocupa o espaço restante disponível */
-        padding-bottom: 50px; /* Adiciona espaço para o rodapé */
-        overflow-y: auto; /* Rolagem interna apenas se necessário */
-    }
-
-    footer {
-        width: 100%;
-        padding: 10px 0;
-        background-color: #343a40;
-        color: white;
-        text-align: center;
-        position: relative;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Ticket</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet"> <!-- Vinculando o arquivo CSS -->
 </head>
-<body style="background-color:rgb(0, 0, 0);">
+<body>
 
 <div class="main-container">
     <div class="container mt-5 content">
@@ -101,78 +72,10 @@
 
     <!-- Rodapé -->
     <footer>
-        Developed by Equipe de TI e Projetos - Instituto Mollitiam @ 2024
+        Developed by TI Team @ Mollitiam 2024
     </footer>
 </div>
 
-<script>
-document.getElementById("ticketForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-    pesquisarTicket();
-});
-
-document.getElementById("numeroTicket").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault(); // Impede a submissão do formulário
-        pesquisarTicket();
-    }
-});
-
-function pesquisarTicket() {
-    var numero = document.getElementById("numeroTicket").value;
-    if(numero !== "") {
-        var url = "https://centraldeti.institutomollitiam.org.br/front/ticket.form.php?id=" + numero;
-        window.open(url, "_blank");
-        document.getElementById("numeroTicket").value = ""; // Limpar o campo de entrada
-        return false; // Impede a submissão do formulário
-    } else {
-        alert("Por favor, insira um número de ticket.");
-        return false; // Impede a submissão do formulário
-    }
-}
-
-// Função para abrir o link com base na seleção e redefinir o dropdown
-function abrirLink(menu, valor) {
-    var urls = {
-        'sisEduc': {
-            'Saquarema': 'https://homologa.siseducsaquarema.org.br/',
-            'Arraial': 'https://homologacao.siseducarraial.org.br/',
-            'São Gonçalo': 'https://hml.siseducsg.org.br/',
-            'Guapimirim': 'https://homologacao.educaguapi.org.br/',
-            'COUNI - Graduação': 'https://homologacao.conexaosaquarema.org.br/',
-            'COUNI - Pós': 'https://pos-hml.conexaouniversitaria.org.br/'
-        },
-        'ged': {
-            'Saquarema': 'https://hmlged.siseducsaquarema.org.br/',
-            'Arraial': 'https://hmlged.siseducarraial.org.br/',
-            'São Gonçalo': 'https://hmlged.siseducsg.org.br/',
-            'Guapi - Educ': 'https://hmlged.educaguapi.org.br/',
-            'Guapi - Adm': '-',
-            'Maricá': 'https://hml.gedsmemarica.org.br/'
-        },
-        'matricula': {
-            'Saquarema': 'https://homologa.siseducsaquarema.org.br/siseduc/Matriculaonline_inscricao',
-            'Arraial': 'https://homologacao.siseducarraial.org.br/siseduc/Matriculaonline_inscricao',
-            'São Gonçalo': 'https://hml.siseducsg.org.br/siseduc/Matriculaonline_inscricao',
-            'Guapimirim': 'https://homologacao.educaguapi.org.br/siseduc/Matriculaonline_inscricao'
-        },
-        'portalAluno': {
-            'Saquarema': 'https://hml-portaldoaluno.siseducsaquarema.org.br/',
-            'Arraial': '-',
-            'São Gonçalo': '-',
-            'Guapimirim': '-'
-        }
-    };
-
-    // Verifica se o valor da seleção é válido e se existe um link
-    if (urls[menu] && urls[menu][valor]) {
-        window.open(urls[menu][valor], "_blank");
-    }
-
-    // Resetar o select para a opção padrão
-    document.getElementById(menu).value = "";
-}
-</script>
-
+<script src="./js/script.js"></script> <!-- Vinculando o arquivo JS -->
 </body>
 </html>
