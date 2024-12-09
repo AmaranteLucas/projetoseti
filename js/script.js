@@ -39,7 +39,7 @@ function abrirLink(menu, valor) {
             'Arraial': 'https://hmlged.siseducarraial.org.br/',
             'São Gonçalo': 'https://hmlged.siseducsg.org.br/',
             'Guapi - Educ': 'https://hmlged.educaguapi.org.br/',
-            'Guapi - Adm': '-',
+            'Guapi - Adm': 'https://hmlged.gedguapimirim.org.br/',
             'Maricá': 'https://hml.gedsmemarica.org.br/'
         },
         'matricula': {
