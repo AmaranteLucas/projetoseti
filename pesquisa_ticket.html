@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesquisa de Ticket</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color:rgb(0, 0, 0);">
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-white">Pesquisa de Ticket</h1>
+
+    <form id="ticketForm" onsubmit="return pesquisarTicket()" class="mb-3">
+        <div class="form-group text-white">
+            <label for="numeroTicket">Número do Ticket:</label>
+            <input type="text" id="numeroTicket" name="numeroTicket" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
+
+    <!-- Dropdown menus -->
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <label for="sisEduc" class="text-white">SisEduc / COUNI</label>
+            <select id="sisEduc" class="form-control" onchange="abrirLink('sisEduc', this.value)">
+                <option value="">Selecione...</option>
+                <option value="Saquarema">Saquarema</option>
+                <option value="Arraial">Arraial</option>
+                <option value="São Gonçalo">São Gonçalo</option>
+                <option value="Guapimirim">Guapimirim</option>
+                <option value="COUNI - Graduação">COUNI - Graduação</option>
+                <option value="COUNI - Pós">COUNI - Pós</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="ged" class="text-white">Ged</label>
+            <select id="ged" class="form-control" onchange="abrirLink('ged', this.value)">
+                <option value="">Selecione...</option>
+                <option value="Saquarema">Saquarema</option>
+                <option value="Arraial">Arraial</option>
+                <option value="São Gonçalo">São Gonçalo</option>
+                <option value="Guapi - Educ">Guapi - Educ</option>
+                <option value="Guapi - Adm">Guapi - Adm</option>
+                <option value="Maricá">Maricá</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="matricula" class="text-white">Matrícula</label>
+            <select id="matricula" class="form-control" onchange="abrirLink('matricula', this.value)">
+                <option value="">Selecione...</option>
+                <option value="Saquarema">Saquarema</option>
+                <option value="Arraial">Arraial</option>
+                <option value="São Gonçalo">São Gonçalo</option>
+                <option value="Guapimirim">Guapimirim</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="portalAluno" class="text-white">Portal do Aluno</label>
+            <select id="portalAluno" class="form-control" onchange="abrirLink('portalAluno', this.value)">
+                <option value="">Selecione...</option>
+                <option value="Saquarema">Saquarema</option>
+                <option value="Arraial" disabled>Arraial</option>
+                <option value="São Gonçalo" disabled>São Gonçalo</option>
+                <option value="Guapimirim" disabled>Guapimirim</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById("ticketForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+    pesquisarTicket();
+});
+
+document.getElementById("numeroTicket").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Impede a submissão do formulário
+        pesquisarTicket();
+    }
+});
+
+function pesquisarTicket() {
+    var numero = document.getElementById("numeroTicket").value;
+    if(numero !== "") {
+        var url = "https://centraldeti.institutomollitiam.org.br/front/ticket.form.php?id=" + numero;
+        window.open(url, "_blank");
+        document.getElementById("numeroTicket").value = ""; // Limpar o campo de entrada
+        return false; // Impede a submissão do formulário
+    } else {
+        alert("Por favor, insira um número de ticket.");
+        return false; // Impede a submissão do formulário
+    }
+}
+
+// Função para abrir o link com base na seleção e redefinir o dropdown
+function abrirLink(menu, valor) {
+    var urls = {
+        'sisEduc': {
+            'Saquarema': 'https://homologa.siseducsaquarema.org.br/',
+            'Arraial': 'https://homologacao.siseducarraial.org.br/',
+            'São Gonçalo': 'https://hml.siseducsg.org.br/',
+            'Guapimirim': 'https://homologacao.educaguapi.org.br/',
+            'COUNI - Graduação': 'https://homologacao.conexaosaquarema.org.br/',
+            'COUNI - Pós': 'https://pos-hml.conexaouniversitaria.org.br/'
+        },
+        'ged': {
+            'Saquarema': 'https://hmlged.siseducsaquarema.org.br/',
+            'Arraial': 'https://hmlged.siseducarraial.org.br/',
+            'São Gonçalo': 'https://hmlged.siseducsg.org.br/',
+            'Guapi - Educ': 'https://hmlged.educaguapi.org.br/',
+            'Guapi - Adm': '-',
+            'Maricá': 'https://hml.gedsmemarica.org.br/'
+        },
+        'matricula': {
+            'Saquarema': 'https://homologa.siseducsaquarema.org.br/siseduc/Matriculaonline_inscricao',
+            'Arraial': 'https://homologacao.siseducarraial.org.br/siseduc/Matriculaonline_inscricao',
+            'São Gonçalo': 'https://hml.siseducsg.org.br/siseduc/Matriculaonline_inscricao',
+            'Guapimirim': 'https://homologacao.educaguapi.org.br/siseduc/Matriculaonline_inscricao'
+        },
+        'portalAluno': {
+            'Saquarema': 'https://hml-portaldoaluno.siseducsaquarema.org.br/',
+            'Arraial': '-',
+            'São Gonçalo': '-',
+            'Guapimirim': '-'
+        }
+    };
+
+    // Verifica se o valor da seleção é válido e se existe um link
+    if (urls[menu] && urls[menu][valor]) {
+        window.open(urls[menu][valor], "_blank");
+    }
+
+    // Resetar o select para a opção padrão
+    document.getElementById(menu).value = "";
+}
+</script>
+
+</body>
+</html>
