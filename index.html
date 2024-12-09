@@ -5,67 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pesquisa de Ticket</title>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Garantir que o conteúdo ocupe o espaço disponível e o rodapé sempre apareça no fundo */
+    html, body {
+        height: 100%; /* O corpo ocupa a altura total da janela */
+        margin: 0; /* Remove margens padrões */
+        overflow: hidden; /* Impede a exibição da barra de rolagem */
+    }
+
+    /* Container principal usando flexbox para manter o rodapé no fundo */
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .content {
+        flex: 1; /* Ocupa o espaço restante disponível */
+        padding-bottom: 50px; /* Adiciona espaço para o rodapé */
+        overflow-y: auto; /* Rolagem interna apenas se necessário */
+    }
+
+    footer {
+        width: 100%;
+        padding: 10px 0;
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        position: relative;
+    }
+</style>
 </head>
 <body style="background-color:rgb(0, 0, 0);">
 
-<div class="container mt-5">
-    <h1 class="mb-4 text-white">Pesquisa de Ticket</h1>
+<div class="main-container">
+    <div class="container mt-5 content">
+        <h1 class="mb-4 text-white">Pesquisa de Ticket</h1>
 
-    <form id="ticketForm" onsubmit="return pesquisarTicket()" class="mb-3">
-        <div class="form-group text-white">
-            <label for="numeroTicket">Número do Ticket:</label>
-            <input type="text" id="numeroTicket" name="numeroTicket" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Pesquisar</button>
-    </form>
+        <form id="ticketForm" onsubmit="return pesquisarTicket()" class="mb-3">
+            <div class="form-group text-white">
+                <label for="numeroTicket">Número do Ticket:</label>
+                <input type="text" id="numeroTicket" name="numeroTicket" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </form>
 
-    <!-- Dropdown menus -->
-    <div class="row mt-4">
-        <div class="col-md-3">
-            <label for="sisEduc" class="text-white">SisEduc / COUNI</label>
-            <select id="sisEduc" class="form-control" onchange="abrirLink('sisEduc', this.value)">
-                <option value="">Selecione...</option>
-                <option value="Saquarema">Saquarema</option>
-                <option value="Arraial">Arraial</option>
-                <option value="São Gonçalo">São Gonçalo</option>
-                <option value="Guapimirim">Guapimirim</option>
-                <option value="COUNI - Graduação">COUNI - Graduação</option>
-                <option value="COUNI - Pós">COUNI - Pós</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="ged" class="text-white">Ged</label>
-            <select id="ged" class="form-control" onchange="abrirLink('ged', this.value)">
-                <option value="">Selecione...</option>
-                <option value="Saquarema">Saquarema</option>
-                <option value="Arraial">Arraial</option>
-                <option value="São Gonçalo">São Gonçalo</option>
-                <option value="Guapi - Educ">Guapi - Educ</option>
-                <option value="Guapi - Adm">Guapi - Adm</option>
-                <option value="Maricá">Maricá</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="matricula" class="text-white">Matrícula</label>
-            <select id="matricula" class="form-control" onchange="abrirLink('matricula', this.value)">
-                <option value="">Selecione...</option>
-                <option value="Saquarema">Saquarema</option>
-                <option value="Arraial">Arraial</option>
-                <option value="São Gonçalo">São Gonçalo</option>
-                <option value="Guapimirim">Guapimirim</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <label for="portalAluno" class="text-white">Portal do Aluno</label>
-            <select id="portalAluno" class="form-control" onchange="abrirLink('portalAluno', this.value)">
-                <option value="">Selecione...</option>
-                <option value="Saquarema">Saquarema</option>
-                <option value="Arraial" disabled>Arraial</option>
-                <option value="São Gonçalo" disabled>São Gonçalo</option>
-                <option value="Guapimirim" disabled>Guapimirim</option>
-            </select>
+        <!-- Dropdown menus -->
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <label for="sisEduc" class="text-white">SisEduc / COUNI</label>
+                <select id="sisEduc" class="form-control" onchange="abrirLink('sisEduc', this.value)">
+                    <option value="">Selecione...</option>
+                    <option value="Saquarema">Saquarema</option>
+                    <option value="Arraial">Arraial</option>
+                    <option value="São Gonçalo">São Gonçalo</option>
+                    <option value="Guapimirim">Guapimirim</option>
+                    <option value="COUNI - Graduação">COUNI - Graduação</option>
+                    <option value="COUNI - Pós">COUNI - Pós</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="ged" class="text-white">Ged</label>
+                <select id="ged" class="form-control" onchange="abrirLink('ged', this.value)">
+                    <option value="">Selecione...</option>
+                    <option value="Saquarema">Saquarema</option>
+                    <option value="Arraial">Arraial</option>
+                    <option value="São Gonçalo">São Gonçalo</option>
+                    <option value="Guapi - Educ">Guapi - Educ</option>
+                    <option value="Guapi - Adm">Guapi - Adm</option>
+                    <option value="Maricá">Maricá</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="matricula" class="text-white">Matrícula</label>
+                <select id="matricula" class="form-control" onchange="abrirLink('matricula', this.value)">
+                    <option value="">Selecione...</option>
+                    <option value="Saquarema">Saquarema</option>
+                    <option value="Arraial">Arraial</option>
+                    <option value="São Gonçalo">São Gonçalo</option>
+                    <option value="Guapimirim">Guapimirim</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="portalAluno" class="text-white">Portal do Aluno</label>
+                <select id="portalAluno" class="form-control" onchange="abrirLink('portalAluno', this.value)">
+                    <option value="">Selecione...</option>
+                    <option value="Saquarema">Saquarema</option>
+                    <option value="Arraial" disabled>Arraial</option>
+                    <option value="São Gonçalo" disabled>São Gonçalo</option>
+                    <option value="Guapimirim" disabled>Guapimirim</option>
+                </select>
+            </div>
         </div>
     </div>
+
+    <!-- Rodapé -->
+    <footer>
+        Developed by Equipe de TI e Projetos - Instituto Mollitiam @ 2024
+    </footer>
 </div>
 
 <script>
