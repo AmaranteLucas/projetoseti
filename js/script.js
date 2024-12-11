@@ -45,7 +45,7 @@ function abrirLink(menu, valor) {
         'matricula': {
             'Saquarema': 'https://homologa.siseducsaquarema.org.br/siseduc/Matriculaonline_inscricao',
             'Arraial': 'https://homologacao.siseducarraial.org.br/siseduc/Matriculaonline_inscricao',
-            'São Gonçalo': 'https://hml.siseducsg.org.br/siseduc/Matriculaonline_inscricao',
+            'São Gonçalo': 'https://hml.siseducsg.org.br/siseduc/prematricula',
             'Guapimirim': 'https://homologacao.educaguapi.org.br/siseduc/Matriculaonline_inscricao'
         },
         'portalAluno': {
