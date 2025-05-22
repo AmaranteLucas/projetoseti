@@ -51,7 +51,7 @@ function abrirLink(menu, valor) {
         },
         'portalAluno': {
             'Saquarema': 'https://hml-portaldoaluno.siseducsaquarema.org.br/',
-            'Arraial': '-',
+            'Arraial': 'https://hml-portaldoaluno.siseducarraial.org.br/',
             'São Gonçalo': '-',
             'Guapimirim': '-'
         }
