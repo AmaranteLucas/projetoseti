@@ -23,6 +23,10 @@ function pesquisarTicket() {
     }
 }
 
+function portalFuncionario() {
+        window.open('https://portalfuncionario.nasajon.com.br/mollitiam/home', "_blank");
+}
+
 // Função para abrir o link com base na seleção e redefinir o dropdown
 function abrirLink(menu, valor) {
     var urls = {
@@ -32,7 +36,8 @@ function abrirLink(menu, valor) {
             'São Gonçalo': 'https://hml.siseducsg.org.br/',
             'Guapimirim': 'https://homologacao.educaguapi.org.br/',
             'COUNI - Graduação': 'https://homologacao.conexaosaquarema.org.br/',
-            'COUNI - Pós': 'https://pos-hml.conexaouniversitaria.org.br/'
+            'COUNI - Pós': 'https://pos-hml.conexaouniversitaria.org.br/',
+            'COUNI - Refatoração': 'https://refatoracao-hml.conexaouniversitaria.org.br/login'
         },
         'ged': {
             'Saquarema': 'https://hmlged.siseducsaquarema.org.br/',
